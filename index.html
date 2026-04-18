@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Alex / Alexa</title>
+  <meta name="description" content="A minimalist birthday wishes wall for Alex or Alexa." />
+  <style>
+    :root {
+      --bg: #f7f4f2;
+      --panel: rgba(255, 255, 255, 0.78);
+      --text: #141414;
+      --muted: #6f6f6f;
+      --line: rgba(20, 20, 20, 0.08);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.08);
+      --radius: 28px;
+      --accent-1: #6d5dfc;
+      --accent-2: #f36b8a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(109, 93, 252, 0.12), transparent 24%),
+        radial-gradient(circle at top right, rgba(243, 107, 138, 0.10), transparent 20%),
+        linear-gradient(180deg, #fbfaf9 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 74vh;
+      display: grid;
+      place-items: center;
+      padding: 44px 0 24px;
+    }
+
+    .hero-panel {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .hero-copy { padding: 64px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.6);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(3rem, 7vw, 6.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .name {
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lede {
+      max-width: 52ch;
+      margin: 0 0 28px;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+
+    .btn-primary {
+      background: #111111;
+      color: #ffffff;
+      border-color: #111111;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.66);
+      color: var(--text);
+    }
+
+    .hero-side {
+      border-left: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0.74));
+      padding: 28px;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+    }
+
+    .big-mark {
+      font-size: clamp(4rem, 9vw, 6.4rem);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.09em;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .mini-card span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    section.wall {
+      padding: 8px 0 72px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 48ch;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .comments-shell {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .help {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    code {
+      background: rgba(17,17,17,0.05);
+      border: 1px solid rgba(17,17,17,0.08);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92em;
+    }
+
+    .utterances { max-width: 100%; }
+
+    footer {
+      padding: 0 0 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 880px) {
+      .hero-panel { grid-template-columns: 1fr; }
+      .hero-side {
+        border-left: none;
+        border-top: 1px solid var(--line);
+      }
+      .hero-copy { padding: 34px 24px; }
+      .hero-side { padding: 24px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-panel">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span> Birthday Wishes Wall</div>
+          <h1>Happy Birthday<br><span class="name">Alex / Alexa</span></h1>
+          <p class="lede">
+            Leave a message, memory, roast, blessing, or suspiciously emotional paragraph.
+            A clean little birthday wall for friends to pile on the affection.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#wishes">Post a Wish</a>
+            <a class="btn btn-secondary" href="#how">Setup Notes</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="big-mark">BDAY</div>
+          <div class="stack">
+            <div class="mini-card">
+              <strong>Minimal and modern</strong>
+              <span>Soft gradients, glassy panels, and none of the usual birthday design crimes.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Public message wall</strong>
+              <span>Friends can leave wishes in the embedded comment section below.</span>
+            </div>
+            <div class="mini-card">
+              <strong>GitHub Pages ready</strong>
+              <span>Upload this file, switch on Pages, and let the internet perform its ritual.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wall" id="wishes">
+      <div class="section-head">
+        <h2>Birthday Wishes</h2>
+        <p>
+          This page uses <code>utterances</code> for comments, which means messages are stored in a GitHub issue.
+          People posting wishes will need a GitHub account.
+        </p>
+      </div>
+
+      <div class="comments-shell">
+        <script
+          src="https://utteranc.es/client.js"
+          repo="YOUR_USERNAME/YOUR_REPO"
+          issue-term="pathname"
+          label="birthday"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+
+        <div class="help" id="how">
+          <strong>Before you upload:</strong> replace <code>YOUR_USERNAME/YOUR_REPO</code> with your real public repository,
+          make sure <strong>Issues</strong> are enabled, create a label called <code>birthday</code>,
+          and install the Utterances GitHub app for that repo.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Made for Alex / Alexa. Edit the names, colors, and text if you want to pretend you enjoy front-end work.
+    </footer>
+  </div>
+</body>
+</html>
